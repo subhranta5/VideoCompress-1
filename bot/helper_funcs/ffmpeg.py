@@ -46,11 +46,11 @@ async def convert_video(video_file, output_directory, total_time, bot, message, 
       "-i",
       video_file,
       "-c:v", 
-      "h264",
+      "libx265",
+      "-vtag",
+      "hvc1",
       "-preset", 
       "ultrafast",
-      "-tune",
-      "film",
       "-c:a",
       "copy",
       out_put_file_name
@@ -129,8 +129,8 @@ async def convert_video(video_file, output_directory, total_time, bot, message, 
             ''.join([FINISHED_PROGRESS_STR for i in range(math.floor(percentage / 10))]),
             ''.join([UN_FINISHED_PROGRESS_STR for i in range(10 - math.floor(percentage / 10))])
             )
-        stats = f'📦️ <b>Compressing</b> {target_percentage}%\n\n' \
-                f'⏰️ <b>ETA:</b> {ETA}\n\n' \
+        stats = f'📦️ <b>Converting To H256 </b>\n\n' \
+                f'⏰️ <b>TimeLeft:</b> {ETA}\n\n' \
                 f'{progress_str}\n'
         try:
           await message.edit_text(
